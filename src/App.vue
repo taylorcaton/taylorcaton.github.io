@@ -1,14 +1,17 @@
 <template>
+  <star-field />
   <Portfolio />
 </template>
 
 <script>
 import Portfolio from './components/Portfolio.vue';
+import StarField from './components/StarField.vue';
 
 export default {
   name: 'App',
   components: {
     Portfolio,
+    'star-field': StarField,
   },
 };
 </script>
@@ -16,12 +19,9 @@ export default {
 <style src="../node_modules/bulma/css/bulma.min.css"></style>
 
 <style lang="scss">
-#app {
-  margin-top: 60px;
-}
-
 html,
 body {
-  background: #ececec;
+  background: #000;
+  height: 100%;
 }
 </style>
