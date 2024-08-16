@@ -1,10 +1,10 @@
 <template>
   <section class="container">
     <div class="heading-container">
-      <h1 class="title">Taylor Caton</h1>
-      <h2 class="subtitle">
+      <h1 class="title"><span class="wave">✌🏻</span> Taylor Caton</h1>
+      <p class="subtitle">
         Full-stack developer in NC with a focus on Node.js, Databases (SQL & Mongo), and Vue!
-      </h2>
+      </p>
       <a href="https://github.com/taylorcaton" target="_blank">
         <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="github-logo">
           <title>GitHub</title>
@@ -60,12 +60,20 @@ $banana: #ffe81f;
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h1 {
   text-rendering: optimizeLegibility;
   color: $offWhite;
   font-size: 28px;
+}
+
+p {
+  color: $offWhite
 }
 
 .heading-container {
@@ -90,10 +98,30 @@ a {
   &:hover,
   &:focus {
     color: $banana !important;
+    text-decoration: underline;
 
     svg {
       fill: $banana;
     }
   }
+}
+
+.wave {
+  animation-name: wave-animation;  /* Refers to the name of your @keyframes element below */
+  animation-duration: 2.5s;        /* Change to speed up or slow down */
+  animation-iteration-count: infinite;  /* Never stop waving :) */
+  transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
+  display: inline-block;
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate( 0.0deg) }
+   10% { transform: rotate(14.0deg) }
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
+  100% { transform: rotate( 0.0deg) }
 }
 </style>
