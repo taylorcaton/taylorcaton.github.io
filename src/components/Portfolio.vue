@@ -1,9 +1,10 @@
+<!-- eslint-disable max-len -->
 <template>
   <section class="container">
     <div class="heading-container">
       <h1 class="title"><span class="wave">✌🏻</span> Taylor Caton</h1>
       <p class="subtitle">
-        Full-stack developer in NC with a focus on Node.js, Databases (SQL & Mongo), and Vue!
+        Experienced full-stack developer, teacher, ADA enthusiast, and musician with a proven track record of leading front-end teams to deliver high-quality projects.
       </p>
       <a href="https://github.com/taylorcaton" target="_blank">
         <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="github-logo">
