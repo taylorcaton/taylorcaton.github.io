@@ -1,8 +1,11 @@
 <!-- eslint-disable max-len -->
 <template>
-  <section class="container">
+  <section class="container" :class="{ rock: this.isAnimated }">
     <div class="heading-container">
-      <h1 class="title"><span :class="{ wave: this.isAnimated }">✌🏻</span> Taylor Caton</h1>
+      <h1 class="title" :class="{ gemini: this.isAnimated }">
+        <span :class="{ wave: this.isAnimated }">✌🏻</span>
+        Taylor Caton
+      </h1>
       <p class="subtitle">
         Experienced full-stack developer, teacher, ADA enthusiast, and musician with a proven track record of leading
         front-end teams to deliver high-quality projects.
@@ -73,6 +76,10 @@ $banana: #ffe81f;
   justify-content: center;
 }
 
+.rock {
+  animation: 10s rock infinite ease-in-out;
+}
+
 h1 {
   text-rendering: optimizeLegibility;
   color: $offWhite;
@@ -130,5 +137,40 @@ a {
    50% { transform: rotate(10.0deg) }
    60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
   100% { transform: rotate( 0.0deg) }
+}
+
+@keyframes rock {
+
+  0%,
+  100% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(1deg);
+  }
+}
+
+.gemini {
+  background: radial-gradient(circle, $offWhite, $banana);
+  background-clip: text;
+  color: transparent;
+  animation: gemini 15s linear infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gemini {
+
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
 }
 </style>
