@@ -2,11 +2,18 @@
 <template>
   <section class="container" :class="{ rock: this.isAnimated }">
     <div class="heading-container">
-      <h1 class="title" :class="{ gemini: this.isAnimated }">
+      <h1 class="title is-spaced" :class="{ gemini: this.isAnimated }">
         <span :class="{ wave: this.isAnimated }">✌🏻</span>
         Taylor Caton
       </h1>
-      <p class="subtitle">
+      <p
+        v-show="this.isAnimated"
+        class="subtitle"
+        id="typewriter"
+        aria-label="Experienced full-stack developer, teacher, ADA enthusiast, and musician with a proven track record of leading
+        front-end teams to deliver high-quality projects.">
+      </p>
+      <p v-show="!this.isAnimated" class="subtitle">
         Experienced full-stack developer, teacher, ADA enthusiast, and musician with a proven track record of leading
         front-end teams to deliver high-quality projects.
       </p>
@@ -43,18 +50,47 @@
 </template>
 
 <script>
+import Typewriter from 'typewriter-effect/dist/core';
+
 export default {
   name: 'PortfolioContainer',
   props: {
     isRunning: Boolean,
   },
   data() {
-    return { isAnimated: this.isRunning };
+    return {
+      isAnimated: this.isRunning,
+      typer: null,
+    };
   },
   watch: {
     // eslint-disable-next-line func-names
     isRunning() { // watch it
       this.isAnimated = this.isRunning;
+      if (this.isAnimated) this.runTyper();
+    },
+  },
+  mounted() {
+    this.runTyper();
+  },
+  methods: {
+    runTyper() {
+      if (!this.typer) {
+        // eslint-disable-next-line no-new
+        this.typer = new Typewriter('#typewriter', {
+          delay: 70,
+        });
+
+        this.typer
+          .pauseFor(2500)
+          .typeString('Professional <strong style="color:#ffe81f">full-stack developer</strong>, speaker, ')
+          .pauseFor(300)
+          .deleteChars(9)
+          .typeString('<strong style="color:#ffe81f">teacher</strong>, <strong style="color:#ffe81f">ADA enthusiast</strong>, and <strong style="color:#ffe81f">musician</strong> ')
+          .typeString('with a proven track record of leading front-end teams to deliver high-quality projects.')
+          .pauseFor(1000)
+          .start();
+      }
     },
   },
 };
@@ -90,11 +126,19 @@ p {
   color: $offWhite
 }
 
+.subtitle {
+  min-height: 150px;
+  @media (min-width: 768px) {
+    min-height: auto;
+  }
+}
+
 .heading-container {
   margin: 100px 25px;
+  width: 100%;
 
   @media (min-width: 768px) {
-    max-width: 600px;
+    width: 600px;
     margin: 100px auto;
   }
 }
@@ -152,10 +196,10 @@ a {
 }
 
 .gemini {
-  background: radial-gradient(circle, $offWhite, $banana);
+  background: linear-gradient($banana, $offWhite);
   background-clip: text;
   color: transparent;
-  animation: gemini 15s linear infinite;
+  animation: gemini 2s linear;
   background-size: 200% 200%;
 }
 
