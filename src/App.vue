@@ -1,7 +1,7 @@
 <template>
-  <star-field :runStars="runStars" />
-  <Portfolio />
-  <button class="button is-small is-dark toggle-stars" @click="runStars = !runStars">
+  <star-field :isRunning="isRunning" />
+  <Portfolio :isRunning="isRunning" />
+  <button class="button is-small is-dark toggle-stars" @click="isRunning = !isRunning">
     Toggle Animation
   </button>
 </template>
@@ -17,7 +17,7 @@ export default {
     'star-field': StarField,
   },
   data: () => ({
-    runStars: true,
+    isRunning: true,
   }),
 };
 </script>

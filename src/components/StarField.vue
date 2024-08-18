@@ -6,10 +6,10 @@
 export default {
   name: 'StarField',
   props: {
-    runStars: Boolean,
+    isRunning: Boolean,
   },
   data() {
-    return { isRunning: this.runStars };
+    return { isAnimated: this.isRunning };
   },
   mounted() {
     const canvas = document.getElementById('canvas');
@@ -44,7 +44,7 @@ export default {
       return out;
     };
 
-    const stars = makeStars(3000);
+    const stars = makeStars(2000);
 
     const clear = () => {
       c.fillStyle = 'black';
@@ -60,7 +60,7 @@ export default {
     };
 
     const moveStars = (distance) => {
-      if (this.isRunning) {
+      if (this.isAnimated) {
         const count = stars.length;
         for (let i = 0; i < count; i += 1) {
           const s = stars[i];
@@ -114,9 +114,8 @@ export default {
   },
   watch: {
     // eslint-disable-next-line func-names
-    runStars(newVal, oldVal) { // watch it
-      console.log('runStars changed: ', newVal, ' | was: ', oldVal);
-      this.isRunning = this.runStars;
+    isRunning() { // watch it
+      this.isAnimated = this.isRunning;
     },
   },
 };
