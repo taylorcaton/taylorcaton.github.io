@@ -1,7 +1,11 @@
 <template>
   <star-field :isRunning="isRunning" />
   <Portfolio :isRunning="isRunning" />
-  <button class="button is-small is-dark toggle-stars" @click="isRunning = !isRunning">
+  <button
+    class="button is-small toggle-stars"
+    :class="{'is-dark': isRunning, 'is-black': !isRunning}"
+    @click="isRunning = !isRunning"
+  >
     Toggle Animation
   </button>
 </template>
