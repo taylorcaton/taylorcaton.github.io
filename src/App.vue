@@ -1,6 +1,9 @@
 <template>
-  <star-field />
+  <star-field :runStars="runStars" />
   <Portfolio />
+  <button class="button is-small is-dark toggle-stars" @click="runStars = !runStars">
+    Toggle Animation
+  </button>
 </template>
 
 <script>
@@ -13,6 +16,9 @@ export default {
     Portfolio,
     'star-field': StarField,
   },
+  data: () => ({
+    runStars: true,
+  }),
 };
 </script>
 
@@ -23,5 +29,14 @@ html,
 body {
   background: #000;
   height: 100%;
+}
+.toggle-stars {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 </style>

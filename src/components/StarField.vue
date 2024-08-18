@@ -6,7 +6,10 @@
 export default {
   name: 'StarField',
   props: {
-    msg: String,
+    runStars: Boolean,
+  },
+  data() {
+    return { isRunning: this.runStars };
   },
   mounted() {
     const canvas = document.getElementById('canvas');
@@ -50,18 +53,21 @@ export default {
 
     const putPixel = (x, y, brightness) => {
       const intensity = brightness * 255;
+      const size = intensity < 200 ? 1 : 2;
       const rgb = `rgb(${intensity},${intensity},${intensity})`;
       c.fillStyle = rgb;
-      c.fillRect(x, y, 1, 1);
+      c.fillRect(x, y, size, size);
     };
 
     const moveStars = (distance) => {
-      const count = stars.length;
-      for (let i = 0; i < count; i += 1) {
-        const s = stars[i];
-        s.z -= distance;
-        while (s.z <= 1) {
-          s.z += 1000;
+      if (this.isRunning) {
+        const count = stars.length;
+        for (let i = 0; i < count; i += 1) {
+          const s = stars[i];
+          s.z -= distance;
+          while (s.z <= 1) {
+            s.z += 1000;
+          }
         }
       }
     };
@@ -101,11 +107,17 @@ export default {
 
         putPixel(x, y, b);
       }
-
       requestAnimationFrame(tick);
     };
 
     requestAnimationFrame(init);
+  },
+  watch: {
+    // eslint-disable-next-line func-names
+    runStars(newVal, oldVal) { // watch it
+      console.log('runStars changed: ', newVal, ' | was: ', oldVal);
+      this.isRunning = this.runStars;
+    },
   },
 };
 </script>
