@@ -13,6 +13,7 @@ export default {
     return {
       isAnimated: this.isRunning,
       starSpeeder: this.starSpeed,
+      blur: false,
     };
   },
   mounted() {
@@ -123,6 +124,7 @@ export default {
     },
     starSpeed() {
       this.starSpeeder = this.starSpeed;
+      this.blur = this.starSpeeder > 0.4;
     },
   },
 };
