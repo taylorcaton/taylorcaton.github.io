@@ -7,9 +7,13 @@ export default {
   name: 'StarField',
   props: {
     isRunning: Boolean,
+    starSpeed: Number,
   },
   data() {
-    return { isAnimated: this.isRunning };
+    return {
+      isAnimated: this.isRunning,
+      starSpeeder: this.starSpeed,
+    };
   },
   mounted() {
     const canvas = document.getElementById('canvas');
@@ -83,7 +87,7 @@ export default {
       const elapsed = time - prevTime;
       prevTime = time;
 
-      moveStars(elapsed * 0.1);
+      moveStars(elapsed * this.starSpeeder);
 
       clear();
 
@@ -116,6 +120,9 @@ export default {
     // eslint-disable-next-line func-names
     isRunning() { // watch it
       this.isAnimated = this.isRunning;
+    },
+    starSpeed() {
+      this.starSpeeder = this.starSpeed;
     },
   },
 };

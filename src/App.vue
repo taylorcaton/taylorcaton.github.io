@@ -1,11 +1,10 @@
 <template>
-  <star-field :isRunning="isRunning" />
-  <Portfolio :isRunning="isRunning" />
+  <star-field :isRunning="isRunning" :starSpeed="starSpeed" />
+  <Portfolio :isRunning="isRunning" @hyper-speed="recieveHyperSpeed" />
   <button
     class="button is-small toggle-stars"
     :class="{'is-dark': isRunning, 'is-black': !isRunning}"
-    @click="isRunning = !isRunning"
-  >
+    @click="isRunning = !isRunning">
     Toggle Animation
   </button>
 </template>
@@ -22,7 +21,14 @@ export default {
   },
   data: () => ({
     isRunning: true,
+    starSpeed: 0.1,
   }),
+  methods: {
+    recieveHyperSpeed(speed = 0.1) {
+      if (speed === 'fast') this.starSpeed = speed;
+      else this.starSpeed = speed;
+    },
+  },
 };
 </script>
 
@@ -39,7 +45,7 @@ body {
   bottom: 5px;
   right: 5px;
 
-  &:hover {
+  &:hover, &:focus {
     text-decoration: underline;
   }
 }

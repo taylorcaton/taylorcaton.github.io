@@ -3,21 +3,23 @@
   <section class="container" :class="{ rock: this.isAnimated }">
     <div class="heading-container">
       <h1 class="title is-spaced">
-        <span :class="{ wave: this.isAnimated }">✌🏻&nbsp;</span>
-        <span :class="{ gemini: this.isAnimated }">Taylor Caton</span>
+        <span :class="{ wave: this.isAnimated }" @mouseover="$emit('hyperSpeed', 0.8)"
+          @focus="$emit('hyperSpeed', 0.4)" @mouseleave="$emit('hyperSpeed', 0.1)"
+          @blur="$emit('hyperSpeed', 0.1)">
+          ✌🏻&nbsp;
+        </span>
+        <span :class=" { gemini: this.isAnimated }">Taylor Caton</span>
       </h1>
-      <p
-        v-show="this.isAnimated"
-        class="subtitle"
-        id="typewriter"
-        aria-label="Professional full-stack developer, teacher, ADA enthusiast, and musician with a proven track record of leading
+      <p v-show="this.isAnimated" class="subtitle" id="typewriter" aria-label="Professional full-stack developer, teacher, ADA enthusiast, and musician with a proven track record of leading
         front-end teams to deliver high-quality results.">
       </p>
       <p v-show="!this.isAnimated" class="subtitle">
         Professional full-stack developer, teacher, ADA enthusiast, and musician with a proven track record of leading
         front-end teams to deliver high-quality results.
       </p>
-      <a href="https://github.com/taylorcaton" target="_blank">
+      <a href="https://github.com/taylorcaton" target="_blank" @mouseover="$emit('hyperSpeed', 0.4)"
+        @focus="$emit('hyperSpeed', 0.4)" @mouseleave="$emit('hyperSpeed', 0.1)"
+        @blur="$emit('hyperSpeed', 0.1)">
         <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="github-logo">
           <title>GitHub</title>
           <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577
@@ -32,7 +34,9 @@
         </svg>
         GitHub
       </a>
-      <a href="https://www.linkedin.com/in/taylorcaton/" target="_blank">
+      <a href="https://www.linkedin.com/in/taylorcaton/" target="_blank" @mouseover="$emit('hyperSpeed', 0.4)"
+        @focus="$emit('hyperSpeed', 0.4)" @mouseleave="$emit('hyperSpeed', 0.1)"
+        @blur="$emit('hyperSpeed', 0.1)">
         <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <title>LinkedIn</title>
           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136
@@ -57,6 +61,7 @@ export default {
   props: {
     isRunning: Boolean,
   },
+  emits: ['hyperSpeed'],
   data() {
     return {
       isAnimated: this.isRunning,
@@ -74,6 +79,10 @@ export default {
     this.runTyper();
   },
   methods: {
+    goHyper() {
+      console.log('Hello');
+      this.$emit('hyper-speed');
+    },
     runTyper() {
       if (!this.typer) {
         // eslint-disable-next-line no-new
