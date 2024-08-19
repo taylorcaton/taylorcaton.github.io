@@ -2,20 +2,20 @@
 <template>
   <section class="container" :class="{ rock: this.isAnimated }">
     <div class="heading-container">
-      <h1 class="title is-spaced" :class="{ gemini: this.isAnimated }">
-        <span :class="{ wave: this.isAnimated }">✌🏻</span>
-        Taylor Caton
+      <h1 class="title is-spaced">
+        <span :class="{ wave: this.isAnimated }">✌🏻&nbsp;</span>
+        <span :class="{ gemini: this.isAnimated }">Taylor Caton</span>
       </h1>
       <p
         v-show="this.isAnimated"
         class="subtitle"
         id="typewriter"
-        aria-label="Experienced full-stack developer, teacher, ADA enthusiast, and musician with a proven track record of leading
-        front-end teams to deliver high-quality projects.">
+        aria-label="Professional full-stack developer, teacher, ADA enthusiast, and musician with a proven track record of leading
+        front-end teams to deliver high-quality results.">
       </p>
       <p v-show="!this.isAnimated" class="subtitle">
-        Experienced full-stack developer, teacher, ADA enthusiast, and musician with a proven track record of leading
-        front-end teams to deliver high-quality projects.
+        Professional full-stack developer, teacher, ADA enthusiast, and musician with a proven track record of leading
+        front-end teams to deliver high-quality results.
       </p>
       <a href="https://github.com/taylorcaton" target="_blank">
         <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="github-logo">
@@ -87,7 +87,7 @@ export default {
           .pauseFor(300)
           .deleteChars(9)
           .typeString('<strong style="color:#ffe81f">teacher</strong>, <strong style="color:#ffe81f">ADA enthusiast</strong>, and <strong style="color:#ffe81f">musician</strong> ')
-          .typeString('with a proven track record of leading front-end teams to deliver high-quality projects.')
+          .typeString('with a proven track record of leading front-end teams to deliver high-quality results.')
           .pauseFor(1000)
           .start();
       }
@@ -136,6 +136,7 @@ p {
 .heading-container {
   margin: 100px 25px;
   width: 100%;
+  backdrop-filter: blur(1.3px);
 
   @media (min-width: 768px) {
     width: 600px;
