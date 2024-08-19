@@ -79,10 +79,6 @@ export default {
     this.runTyper();
   },
   methods: {
-    goHyper() {
-      console.log('Hello');
-      this.$emit('hyper-speed');
-    },
     runTyper() {
       if (!this.typer) {
         // eslint-disable-next-line no-new
