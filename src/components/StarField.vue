@@ -13,7 +13,7 @@ export default {
     return {
       isAnimated: this.isRunning,
       starSpeeder: this.starSpeed,
-      blur: false,
+      hyperSpeedColors: ['green', 'red', 'blue'],
     };
   },
   mounted() {
@@ -58,9 +58,15 @@ export default {
 
     const putPixel = (x, y, brightness) => {
       const intensity = brightness * 255;
-      const size = intensity < 200 ? 1 : 2;
+      let size = intensity < 200 ? 1 : 2;
       const rgb = `rgb(${intensity},${intensity},${intensity})`;
       c.fillStyle = rgb;
+      if (this.starSpeeder > 0.4) {
+        c.fillStyle = this.hyperSpeedColors[
+          Math.floor(Math.random() * this.hyperSpeedColors.length)
+        ];
+        size = intensity < 200 ? 2 : 4;
+      }
       c.fillRect(x, y, size, size);
     };
 
