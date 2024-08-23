@@ -1,33 +1,36 @@
 <template>
   <star-field :isRunning="isRunning" :starSpeed="starSpeed" />
   <Portfolio :isRunning="isRunning" @hyper-speed="recieveHyperSpeed" />
-  <button class="button is-small toggle-stars" :class="{ 'is-dark': isRunning, 'is-black': !isRunning }"
-    @click="isRunning = !isRunning">
+  <button
+    class="button is-small toggle-stars"
+    :class="{ 'is-dark': isRunning, 'is-black': !isRunning }"
+    @click="isRunning = !isRunning"
+  >
     Toggle Animation
   </button>
 </template>
 
 <script>
-import Portfolio from './components/Portfolio.vue';
-import StarField from './components/StarField.vue';
+import Portfolio from './components/Portfolio.vue'
+import StarField from './components/StarField.vue'
 
 export default {
   name: 'App',
   components: {
     Portfolio,
-    'star-field': StarField,
+    'star-field': StarField
   },
   data: () => ({
     isRunning: true,
-    starSpeed: 0.1,
+    starSpeed: 0.1
   }),
   methods: {
     recieveHyperSpeed(speed = 0.1) {
-      if (speed === 'fast') this.starSpeed = speed;
-      else this.starSpeed = speed;
-    },
-  },
-};
+      if (speed === 'fast') this.starSpeed = speed
+      else this.starSpeed = speed
+    }
+  }
+}
 </script>
 
 <style src="../node_modules/bulma/css/bulma.min.css"></style>
