@@ -1,9 +1,7 @@
 <template>
   <star-field :isRunning="isRunning" :starSpeed="starSpeed" />
   <Portfolio :isRunning="isRunning" @hyper-speed="recieveHyperSpeed" />
-  <button
-    class="button is-small toggle-stars"
-    :class="{'is-dark': isRunning, 'is-black': !isRunning}"
+  <button class="button is-small toggle-stars" :class="{ 'is-dark': isRunning, 'is-black': !isRunning }"
     @click="isRunning = !isRunning">
     Toggle Animation
   </button>
@@ -40,12 +38,14 @@ body {
   background: #000;
   height: 100%;
 }
+
 .toggle-stars {
   position: fixed;
   bottom: 5px;
   right: 5px;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     text-decoration: underline;
   }
 }

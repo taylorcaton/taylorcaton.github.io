@@ -1,5 +1,5 @@
 <template>
-  <canvas id="canvas" style="width: 100%; height: 100%; padding: 0; margin: 0"></canvas>
+  <canvas id="canvas"></canvas>
 </template>
 
 <script>
@@ -137,4 +137,14 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+#canvas {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+</style>
