@@ -53,7 +53,7 @@ pipeline {
         // package.json's "lint" script includes --fix, which mutates files and
         // is wrong for CI. Call eslint directly, report-only, so a real lint
         // error FAILS the build (your choice: gate on it).
-        sh 'npx eslint . --ext .vue,.js,.jsx,.cjs,.mjs --ignore-path .gitignore'
+        sh 'npx eslint src --ext .vue,.js,.jsx,.cjs,.mjs'
       }
     }
 
