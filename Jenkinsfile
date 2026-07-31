@@ -22,7 +22,7 @@
 pipeline {
   agent {
     docker {
-      image 'cimg/node:22-browsers'
+      image 'cimg/node:22.23-browsers'
       // Join the lhci network so the Lighthouse upload can reach http://lhci:9001.
       args '--network lhci_default'
     }
@@ -110,13 +110,11 @@ pipeline {
 
   post {
     success {
+      cleanWs()
       echo "Build ${BUILD_NUMBER} deployed. Lighthouse history: http://ernie.local:9001"
     }
     failure {
-      echo "Build ${BUILD_NUMBER} failed before deploy -- gh-pages unchanged."
-    }
-    always {
-      cleanWs()
+      echo "Build ${BUILD_NUMBER} failed -- gh-pages unchanged. (Workspace kept for debugging.)"
     }
   }
 }
