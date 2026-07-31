@@ -61,7 +61,7 @@ pipeline {
       steps {
         // package.json's "test:unit" is bare `vitest`, which watches forever
         // and would hang CI. `vitest run` does a single pass and exits.
-        sh 'npx vitest run'
+        sh 'npx vitest run --passWithNoTests'
       }
     }
 
