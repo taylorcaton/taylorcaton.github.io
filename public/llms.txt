@@ -1,0 +1,31 @@
+# Taylor Caton
+
+> Application Manager and full-stack engineer at Bank of America, specializing in web accessibility
+> (WCAG 2.2, ADA/Section 508) and platform modernization for large-scale public-facing sites.
+
+Taylor Caton has spent 9 years at Bank of America building and leading development for the bank's
+primary public-facing web presence (bankofamerica.com, merrill.com, mymerrill.com). Currently an
+Application Manager overseeing delivery, platform stability, and risk across enterprise portfolios,
+after a long tenure as Feature Lead. Deep specialization in accessibility, with experience spanning
+platform modernization, risk management and governance, incident response, and mentoring engineers
+into leadership roles. Background also includes teaching (AP Computer Science, band director) and
+music education. This is a single-page portfolio site with no additional pages, forms, or
+interactive tools.
+
+## Highlights
+
+- Led the WCAG 2.2 adherence rollout and migration of the Wealth Homepages to an in-house modern
+  platform; refactored 35 public-facing sites to ES6 and ADA/WCAG 2.2 compliance over 5 years,
+  improving bankofamerica.com's homepage Lighthouse score by 60%.
+- Featured Speaker at Grace Hopper Celebration 2023 (Orlando, FL), "Writing Accessible Code for
+  All"; moderated a Web Accessibility panel for NCWiT.
+- Co-built an AI-driven image optimization tool (Python, Golang, Shell, Node.js) that reduced image
+  and streaming video payloads by 35%. Winner, Internal Innovation Challenge 2022.
+- Skills: JavaScript/TypeScript, Vue, React, Node.js, Java, Python, Golang, WCAG 2.1/2.2 and
+  Section 508 compliance, CSP remediation and secure coding, CMS platform migration (Adobe
+  Experience Manager), Linux (Red Hat).
+
+## Links
+
+- [GitHub](https://github.com/taylorcaton): Open-source projects and code samples.
+- [LinkedIn](https://www.linkedin.com/in/taylorcaton/): Full professional background and work history.
