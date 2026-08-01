@@ -5,4 +5,4 @@ dist/
 node_modules/
 
 # CI / tooling config that isn't app source
-lighthouserc.js
+lighthouserc.cjs
