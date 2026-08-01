@@ -58,10 +58,8 @@ pipeline {
 
     stage('Lighthouse') {
       steps {
-        // autorun reads lighthouserc.cjs. Basic-auth creds are passed so the
-        // upload clears the server's HTTP basic auth (the 401 fix). `|| true`
-        // keeps Lighthouse from ever failing the build (record-only).
         sh '''
+          export LHCI_BUILD_CONTEXT__CURRENT_BRANCH=main
           npx --yes @lhci/cli@0.15.x autorun \
             --upload.basicAuth.username=taylor \
             --upload.basicAuth.password="$LHCI_BASIC_AUTH_PASSWORD" \
