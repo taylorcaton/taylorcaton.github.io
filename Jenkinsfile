@@ -1,30 +1,24 @@
 // Jenkinsfile  -- lives in the repo root of taylorcaton.github.io
 //
-// Pipeline for a Vue 3 + Vite site deployed to GitHub Pages (gh-pages branch).
-// Runs on ernie's Jenkins, which drives ernie's host docker daemon (DooD).
+// Vue 3 + Vite -> GitHub Pages (gh-pages). Runs on ernie's Jenkins (DooD).
 //
-// Flow:
 //   checkout main -> npm ci -> lint (GATE) -> unit tests (GATE) -> build
 //   -> lighthouse audit of ./dist + upload to LHCI (record only, NO gate)
-//   -> if everything above passed: push ./dist to gh-pages via SSH deploy key
+//   -> if all above passed: push ./dist to gh-pages via SSH deploy key
 //
-// Key design notes:
-//   * Agent image is cimg/node:22-browsers -- Node 22 LTS WITH Chrome and all
-//     its system libs preinstalled. Plain node:22 has no browser and Lighthouse
-//     would crash; this is the image the official LHCI docs use for CI.
-//   * That image runs as non-root user `circleci` (good practice) and includes
-//     git + sudo, so the deploy stage works without extra setup.
-//   * `--network lhci_default` lets the container reach the LHCI server by its
-//     container name (`lhci`) for the results upload.
-//   * The gh-pages push uses the SSH deploy key (credential id github-deploy-key),
-//     NOT the HTTPS gh-pages default -- so no token is needed.
+// Agent image is OUR own lhci-runner (node:22 + Google Chrome installed
+// directly), built on ernie. This is the LHCI-recommended approach vs. a
+// prebuilt container. Chrome is at /usr/bin/google-chrome-stable (CHROME_PATH
+// is baked into the image).
 
 pipeline {
   agent {
     docker {
-      image 'cimg/node:22.23-browsers'
-      // Join the lhci network so the Lighthouse upload can reach http://lhci:9001.
-      args '--network lhci_default'
+      image 'lhci-runner:node22-chrome'
+      // --network: reach the LHCI server (http://lhci:9001) by container name.
+      // --cap-add=SYS_ADMIN + --shm-size=2g: Chrome needs these to run headless
+      //   in a container without crashing (documented LHCI requirement).
+      args '--network lhci_default --cap-add=SYS_ADMIN --shm-size=2g'
     }
   }
 
@@ -34,69 +28,58 @@ pipeline {
   }
 
   environment {
-    // Injected from Jenkins credential store (Secret text).
-    LHCI_TOKEN = credentials('lhci-build-token')
-    // Keep npm's cache inside the workspace (writable by the container user).
-    npm_config_cache = "${WORKSPACE}/.npm"
+    LHCI_TOKEN                = credentials('lhci-build-token')
+    // LHCI basic-auth password (username is not secret, set inline below).
+    LHCI_BASIC_AUTH_PASSWORD  = credentials('lhci-basic-auth-password')
+    npm_config_cache          = "${WORKSPACE}/.npm"
   }
 
   stages {
 
     stage('Install') {
-      steps {
-        sh 'npm ci'
-      }
+      steps { sh 'npm ci' }
     }
 
     stage('Lint') {
       steps {
-        // package.json's "lint" script includes --fix, which mutates files and
-        // is wrong for CI. Call eslint directly, report-only, so a real lint
-        // error FAILS the build (your choice: gate on it).
         sh 'npx eslint src --ext .vue,.js,.jsx,.cjs,.mjs'
       }
     }
 
     stage('Unit tests') {
       steps {
-        // package.json's "test:unit" is bare `vitest`, which watches forever
-        // and would hang CI. `vitest run` does a single pass and exits.
         sh 'npx vitest run --passWithNoTests'
       }
     }
 
     stage('Build') {
-      steps {
-        sh 'npm run build'
-      }
+      steps { sh 'npm run build' }
     }
 
     stage('Lighthouse') {
       steps {
-        // Audit ./dist and upload to the LHCI server. Reads lighthouserc.js.
-        // `|| true` guarantees Lighthouse can NEVER fail the build -- results
-        // are recorded for history only (your choice: no gate).
-        sh 'npx --yes @lhci/cli@0.15.x autorun || true'
+        // autorun reads lighthouserc.cjs. Basic-auth creds are passed so the
+        // upload clears the server's HTTP basic auth (the 401 fix). `|| true`
+        // keeps Lighthouse from ever failing the build (record-only).
+        sh '''
+          npx --yes @lhci/cli@0.15.x autorun \
+            --upload.basicAuth.username=taylor \
+            --upload.basicAuth.password="$LHCI_BASIC_AUTH_PASSWORD" \
+          || true
+        '''
       }
     }
 
     stage('Deploy to gh-pages') {
-      // Only reached if Install/Lint/Test/Build all succeeded.
       steps {
         sshagent(credentials: ['github-deploy-key']) {
           sh '''
-            # Trust github.com's host key so the non-interactive push doesn't
-            # prompt (which would hang the build).
             mkdir -p ~/.ssh
             ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts 2>/dev/null
 
-            # gh-pages needs a git identity for the commit it creates.
             git config --global user.email "jenkins@ernie.local"
             git config --global user.name  "Jenkins (ernie)"
 
-            # Push ./dist to gh-pages over SSH (deploy key auth). -r forces the
-            # SSH remote so gh-pages doesn't fall back to HTTPS origin (which
-            # would need a token we deliberately avoid).
             npx --yes gh-pages@5 \
               -d dist \
               -r git@github.com:taylorcaton/taylorcaton.github.io.git \
