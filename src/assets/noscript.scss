@@ -1,0 +1,7 @@
+@use 'sass:meta';
+
+// normalize.css is scoped to the <noscript> fallback only, so it can't
+// affect the app's normal Bulma/Vue-driven styling.
+@scope (noscript) {
+  @include meta.load-css('../../node_modules/normalize.css/normalize.css');
+}
