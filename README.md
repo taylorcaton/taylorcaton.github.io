@@ -1,41 +1,15 @@
-# taylorcaton.github.io
+# Taylor Caton
 
-This template should help get you started developing with Vue 3 in Vite.
+Source for [taylorcaton.com](https://taylorcaton.com) — my personal portfolio
+site. I'm a full-stack developer, teacher, and accessibility advocate.
 
-## Recommended IDE Setup
+- 🌐 [taylorcaton.com](https://taylorcaton.com)
+- 💼 [LinkedIn](https://www.linkedin.com/in/taylorcaton/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## About this project
 
-## Customize configuration
+A single-page site built with Vue 3 and Vite, styled with Bulma. It deploys
+to GitHub Pages through a self-hosted Jenkins pipeline that lints, tests, and
+Lighthouse-audits every build.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+See [DEVELOPMENT.md](./DEVELOPMENT.md) if you want to run it locally.
