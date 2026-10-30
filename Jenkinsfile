@@ -151,7 +151,7 @@ pipeline {
             # to the gh-pages branch, replacing its contents wholesale.
             # This runs the copy `npm ci` installed in the Install stage, so
             # package-lock.json is the one source of truth for its version.
-            npx --no gh-pages \
+            npx --no -- gh-pages \
               -d dist \
               -r git@github.com:taylorcaton/taylorcaton.github.io.git \
               -b gh-pages \
