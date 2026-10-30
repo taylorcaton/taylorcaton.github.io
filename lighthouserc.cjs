@@ -1,3 +1,4 @@
+/* eslint-env node */
 // lighthouserc.cjs -- config for Lighthouse CI (LHCI), read by the
 // `npx @lhci/cli autorun` command that Jenkins runs in the Lighthouse stage
 // of the pipeline (see Jenkinsfile).
