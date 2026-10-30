@@ -9,8 +9,8 @@ Application Manager overseeing delivery, platform stability, and risk across ent
 after a long tenure as Feature Lead. Deep specialization in accessibility, with experience spanning
 platform modernization, risk management and governance, incident response, and mentoring engineers
 into leadership roles. Background also includes teaching (AP Computer Science, band director) and
-music education. This is a single-page portfolio site with no additional pages, forms, or
-interactive tools.
+music education. This site is a single-page portfolio with no forms or interactive tools of its
+own; profiles and related projects elsewhere are listed under Links.
 
 ## Highlights
 
@@ -29,3 +29,4 @@ interactive tools.
 
 - [GitHub](https://github.com/taylorcaton): Open-source projects and code samples.
 - [LinkedIn](https://www.linkedin.com/in/taylorcaton/): Full professional background and work history.
+- [Black Box Exhibition](https://nes.taylorcaton.com/): A gallery of the early Nintendo Entertainment System "black box" games, with title screens and gameplay loops.

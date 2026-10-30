@@ -23,11 +23,12 @@ describe('Portfolio', () => {
     expect(wrapper.text()).toContain('full-stack developer')
   })
 
-  it('links to the GitHub and LinkedIn profiles', () => {
+  it('links to the GitHub and LinkedIn profiles and the Black Box Exhibition site', () => {
     const wrapper = mount(Portfolio, { props: { isRunning: false } })
     const hrefs = wrapper.findAll('a').map((a) => a.attributes('href'))
     expect(hrefs).toContain('https://github.com/taylorcaton')
     expect(hrefs).toContain('https://www.linkedin.com/in/taylorcaton/')
+    expect(hrefs).toContain('https://nes.taylorcaton.com/')
   })
 
   it('emits hyperSpeed with the expected speeds on hover and focus interactions', async () => {

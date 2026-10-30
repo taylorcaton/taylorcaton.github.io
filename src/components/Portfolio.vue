@@ -45,6 +45,17 @@
         </svg>
         Linkedin
       </a>
+      <a href="https://nes.taylorcaton.com/" target="_blank" @mouseover="$emit('hyperSpeed', 0.4)"
+        @focus="$emit('hyperSpeed', 0.4)" @mouseleave="$emit('hyperSpeed', 0.1)" @blur="$emit('hyperSpeed', 0.1)">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <title>Black Box Exhibition</title>
+          <path fill-rule="evenodd" d="M5 6h14a4 4 0 0 1 4 4v4a4 4 0 0 1-4 4H5a4 4 0 0 1-4-4v-4a4 4 0 0 1 4-4z
+            M6 9v2H4v2h2v2h2v-2h2v-2H8V9z
+            M14 13a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0z
+            M17 10.5a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0z" />
+        </svg>
+        Black Box Exhibition
+      </a>
     </div>
   </section>
 </template>
