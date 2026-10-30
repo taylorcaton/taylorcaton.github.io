@@ -147,10 +147,11 @@ pipeline {
             git config --global user.email "jenkins@ernie.local"
             git config --global user.name  "Jenkins (ernie)"
 
-            # gh-pages@5 builds a commit from the dist/ folder and pushes it
+            # gh-pages@6 builds a commit from the dist/ folder and pushes it
             # to the gh-pages branch, replacing its contents wholesale.
-            # Version pinned for the same reason as the LHCI CLI above.
-            npx --yes gh-pages@5 \
+            # Version pinned for the same reason as the LHCI CLI above, and
+            # kept on the same major version as package.json.
+            npx --yes gh-pages@6 \
               -d dist \
               -r git@github.com:taylorcaton/taylorcaton.github.io.git \
               -b gh-pages \
