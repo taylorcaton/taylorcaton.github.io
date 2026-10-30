@@ -117,10 +117,10 @@ pipeline {
           # which would otherwise hang with no terminal to answer it.
           # The LHCI CLI version is pinned to the 0.15.x line so a future
           # major release can't silently change behavior mid-pipeline.
-          npx --yes @lhci/cli@0.15.x autorun \
-            --upload.basicAuth.username=taylor \
-            --upload.basicAuth.password="$LHCI_BASIC_AUTH_PASSWORD" \
-          || true
+          # The server's basic-auth login is read from lighthouserc.cjs, not
+          # passed as flags here, so the healthcheck gets it as well as the
+          # upload step.
+          npx --yes @lhci/cli@0.15.x autorun || true
         '''
       }
     }

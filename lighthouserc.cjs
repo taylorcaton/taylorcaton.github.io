@@ -62,6 +62,11 @@ module.exports = {
       // Auth token for the LHCI server, provided by Jenkins as an
       // environment variable at build time -- never hardcoded here.
       token: process.env.LHCI_TOKEN,
+      // Basic-auth login for the LHCI server. The password is provided by
+      // Jenkins as an environment variable at build time. This lives here
+      // rather than in CLI flags so the healthcheck gets it too -- the
+      // --upload.* flags only reach the upload step.
+      basicAuth: { username: 'taylor', password: process.env.LHCI_BASIC_AUTH_PASSWORD },
     },
 
     // No `assert` block here, intentionally: without one, LHCI records
